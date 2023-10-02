@@ -16,12 +16,11 @@ public class MaximumSumSubArray {
 
         int sumOfSubArray = Arrays.stream(nums).sum();
         int tempSumOfSubArray = sumOfSubArray;
-        int newSumSubArray = 0;
+        int newSumSubArray;
         int startIndex = 0;
-        int endIndex = 0;
+        int endIndex = len;
         for (int i=1; i<len; i++)
         {
-            //newSumSubArray = Arrays.stream(Arrays.copyOfRange(nums, i, len)).sum();
             newSumSubArray = tempSumOfSubArray - nums[i-1];
             tempSumOfSubArray = newSumSubArray;
             if (newSumSubArray >= sumOfSubArray)
@@ -31,11 +30,9 @@ public class MaximumSumSubArray {
             }
         }
 
-        sumOfSubArray = Arrays.stream(Arrays.copyOfRange(nums, startIndex, nums.length)).sum();
         tempSumOfSubArray = sumOfSubArray;
         for (int i=len-1; i>startIndex; i--)
         {
-            //newSumSubArray = Arrays.stream(Arrays.copyOfRange(nums, startIndex, i)).sum();
             newSumSubArray = tempSumOfSubArray - nums[i];
             tempSumOfSubArray = newSumSubArray;
             if (newSumSubArray > sumOfSubArray)
